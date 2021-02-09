@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "vanya",
+      "password": "111"
+    },
+    {
+      "id": 2,
+      "login": "petya",
+      "password": "222"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "name": "tanya",
+      "number": 89996758686
+    },
+    {
+      "id": 2,
+      "name": "zenya",
+      "number": 89998686567
+    },
+    {
+      "id": 3,
+      "name": "egor",
+      "number": 89976700686
+    },
+    {
+      "id": 4,
+      "name": "olya",
+      "number": 89996088086
+    },
+    {
+      "id": 5,
+      "name": "ruslan",
+      "number": 89098796680
+    }
+  ]
+}
