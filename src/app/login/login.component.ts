@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpService} from "../http.service";
-import {User} from "../interfaces";
 import {Router} from "@angular/router";
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {BottomSheetComponent} from "../bottom-sheet/bottom-sheet.component";
 import {Store} from "@ngxs/store";
-import {isLogin} from "../store.actions";
+import {setUser} from "../store.actions";
+import {catchError, tap} from "rxjs/operators";
+import {EMPTY} from "rxjs";
+import {UserData} from "../interfaces";
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
   formGroup: FormGroup;
@@ -30,16 +31,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logIn = (): boolean => {
-    this.http.logIn(this.formGroup.value)
-      .subscribe((isAuth: boolean) => {
-        if (isAuth) {
-          this.store.dispatch(new isLogin(this.formGroup.value.login))
-            .subscribe(() => this.router.navigate(['']));
-        } else {
+  getUser = (): boolean => {
+    this.http.getUser(this.formGroup.value)
+      .pipe(
+        tap((user: UserData) => {
+          this.store.dispatch(new setUser(user))
+            .subscribe(() => this.router.navigateByUrl('', {replaceUrl: true}));
+        }),
+        catchError((message: Error) => {
           this._bottomSheet.open(BottomSheetComponent);
-        }
-      })
+
+          return EMPTY;
+        })
+      )
+      .subscribe();
 
     return false;
   }

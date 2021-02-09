@@ -1,30 +1,30 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from "./http.service";
 import {Observable} from "rxjs";
-import {StoreState, UserStateModel} from "./store.state";
+import {StoreState} from "./store.state";
 import {Select, Store} from "@ngxs/store";
-import {isLogin} from "./store.actions";
+import {setUser} from "./store.actions";
+import {UserData} from "./interfaces";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  @Select(StoreState) isLogin$: Observable<UserStateModel>;
+  @Select(StoreState) setUser$: Observable<UserData>;
 
-  userName: string;
+  user: UserData;
 
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.isLogin$.subscribe((user: UserStateModel) => {
-      this.userName = user.name;
-    })
+    this.setUser$.subscribe((user: UserData) => {
+      this.user = user;
+    });
   }
 
   logOut = () => {
-   /* this.store.dispatch(new isLogin(this.formGroup.value.login))
+   /* this.store.dispatch(new setUser(this.formGroup.value.login))
       .subscribe(() => this.router.navigate(['']));*/
   }
 }

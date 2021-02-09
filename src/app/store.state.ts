@@ -1,35 +1,29 @@
 import {Injectable} from '@angular/core';
 import {State, Action, StateContext, Selector} from '@ngxs/store';
-import {isLogin} from "./store.actions";
+import {setUser} from "./store.actions";
+import {UserData} from "./interfaces";
 
-export interface UserStateModel {
-  isAuth: boolean;
-  name: string
-  contacts: any[]
+/*
+export interface StateModel {
+  name:
 }
+*/
 
-@State<UserStateModel>({
+@State<UserData>({
   name: 'user',
-  defaults: {
-    name: null,
-    isAuth: false,
-    contacts: []
-  }
+  defaults: null
 })
 @Injectable()
 export class StoreState {
   @Selector()
-  static isLogin(state: UserStateModel) {
+  static setUser(state: UserData) {
     return state;
   }
 
-  @Action(isLogin)
-  isLogin(ctx: StateContext<UserStateModel>, action: isLogin) {
-    const state = ctx.getState();
+  @Action(setUser)
+  setUser(ctx: StateContext<UserData>, action: setUser) {
     ctx.setState({
-      ...state,
-      isAuth: true,
-      name: action.name
+      ...action.user
     });
   }
 }

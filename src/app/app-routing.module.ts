@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {ContactsComponent} from './contacts/contacts.component';
 import {AppGuard} from './app.guard';
+import {AppComponent} from "./app.component";
 
 const routes: Routes = [
   {

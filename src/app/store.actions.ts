@@ -1,6 +1,9 @@
-export class isLogin {
-  static readonly type = '[Auth] isLogin';
-  constructor(public name: string) { }
+import {UserData} from "./interfaces";
+
+
+export class setUser {
+  static readonly type = '[Auth] setUser';
+  constructor(public user: UserData) { }
 }
 
 export class isLogout {

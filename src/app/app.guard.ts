@@ -12,7 +12,8 @@ export class AppGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const isAuth: boolean = this.store.selectSnapshot(StoreState.isLogin).isAuth;
+    const user = this.store.selectSnapshot(StoreState.setUser);
+    const isAuth: boolean = !!(user && user.id);
 
     if (!isAuth) {
       this.router.navigate(['/login']);

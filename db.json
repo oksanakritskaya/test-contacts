@@ -14,26 +14,31 @@
   "contacts": [
     {
       "id": 1,
+      "user_id": 1,
       "name": "tanya",
       "number": 89996758686
     },
     {
       "id": 2,
+      "user_id": 1,
       "name": "zenya",
       "number": 89998686567
     },
     {
       "id": 3,
+      "user_id": 1,
       "name": "egor",
       "number": 89976700686
     },
     {
       "id": 4,
+      "user_id": 2,
       "name": "olya",
       "number": 89996088086
     },
     {
       "id": 5,
+      "user_id": 2,
       "name": "ruslan",
       "number": 89098796680
     }

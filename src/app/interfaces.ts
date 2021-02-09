@@ -1,10 +1,15 @@
 export interface User {
-  login: string,
-  password: string
+  login: string
+  password: any[]
 }
 
-export interface UserData extends User{
-  id: number,
-  name: string,
-  contacts: any[]
+export interface UserData extends User {
+  id: number;
+}
+
+export interface Contact {
+  id: number;
+  id_user: number;
+  name: string;
+  number: number;
 }
