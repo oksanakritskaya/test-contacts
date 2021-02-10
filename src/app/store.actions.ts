@@ -6,7 +6,7 @@ export class setUser {
   constructor(public user: UserData) { }
 }
 
-export class isLogout {
-  static readonly type = '[Auth] isLogout';
-  constructor(public payload: any) { }
+export class deleteUser {
+  static readonly type = '[Auth] deleteUser';
+  constructor() { }
 }

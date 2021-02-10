@@ -32,7 +32,7 @@ export class ContactsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setUser$.subscribe((user: UserData) => {
-      this.userId = user.id;
+      this.userId = user && user.id;
     });
 
     this.getContacts();

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {State, Action, StateContext, Selector} from '@ngxs/store';
-import {setUser} from "./store.actions";
+import {setUser, deleteUser} from "./store.actions";
 import {UserData} from "./interfaces";
 
 @State<UserData>({
@@ -16,8 +16,11 @@ export class StoreState {
 
   @Action(setUser)
   setUser(ctx: StateContext<UserData>, action: setUser) {
-    ctx.setState({
-      ...action.user
-    });
+    ctx.patchState(action.user);
+  }
+
+  @Action(deleteUser)
+  deleteUser(ctx: StateContext<UserData>) {
+    ctx.setState(null);
   }
 }

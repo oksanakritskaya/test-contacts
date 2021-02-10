@@ -298,7 +298,7 @@
   <span>Contacts TZ</span>
   <div class="spacer"></div>
   <ng-container *ngIf="user">
-    <p>{{user.login}}</p>
+    <p>{{user?.login}}</p>
     <button style="margin: 0 18px" mat-raised-button color="accent" type="button" (click)="logOut()">Logout</button>
   </ng-container>
 </div>

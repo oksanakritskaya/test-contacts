@@ -3,6 +3,8 @@ import {Observable} from "rxjs";
 import {StoreState} from "./store.state";
 import {Select, Store} from "@ngxs/store";
 import {UserData} from "./interfaces";
+import {deleteUser, setUser} from "./store.actions";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,8 @@ export class AppComponent implements OnInit {
 
   user: UserData;
 
-  constructor() {}
+  constructor(private store: Store,
+              private router: Router) {}
 
   ngOnInit() {
     this.setUser$.subscribe((user: UserData) => {
@@ -22,7 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   logOut = () => {
-   /* this.store.dispatch(new setUser(this.formGroup.value.login))
-      .subscribe(() => this.router.navigate(['']));*/
+    this.store.dispatch(new deleteUser())
+      .subscribe(() => this.router.navigateByUrl('', {replaceUrl: true}));
   }
 }
