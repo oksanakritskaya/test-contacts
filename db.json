@@ -41,6 +41,18 @@
       "user_id": 2,
       "name": "ruslan",
       "number": 89098796680
+    },
+    {
+      "name": "anya",
+      "number": "123456",
+      "user_id": 1,
+      "id": 6
+    },
+    {
+      "name": "gigi",
+      "number": "123456765",
+      "user_id": 1,
+      "id": 7
     }
   ]
 }

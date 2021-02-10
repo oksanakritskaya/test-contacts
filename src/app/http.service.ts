@@ -35,12 +35,36 @@ export class HttpService {
       )
   }
 
-  getContacts(id: number): Observable<Contact[] > {
+  getContacts(id: number): Observable<Contact[]> {
     const opts = {params: new HttpParams({fromString: `user_id=${id.toString()}`})};
 
     return this.http.get('/contacts', opts)
       .pipe(
         map((contacts: Contact[]) => contacts)
+      );
+  }
+
+  getContactsAll(id: number): Observable<Contact[]> {
+    const opts = {params: new HttpParams({fromString: `user_id=${id.toString()}`})};
+
+    return this.http.get('/contacts')
+      .pipe(
+        map((contacts: Contact[]) => {
+          let result = contacts.filter((contact: Contact) => {
+            return contact.id_user == id;
+          });
+          debugger;
+          return result;
+        })
+      );
+  }
+
+  addContact(contact: Contact): Observable<Contact> {
+    const opts = {params: new HttpParams({fromString: `user_id=${'1'}`})};
+
+    return this.http.post('/contacts', contact)
+      .pipe(
+        map((contact: Contact) => contact)
       );
   }
 }

@@ -1,3 +1,36 @@
 <mat-card *ngFor="let contact of contacts">
-  <p>{{contact.name}}</p>
+  <form [formGroup]="this.getContactFormGroup(contact.id)" (submit)="save(contact.id)">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Number</mat-label>
+      <input formControlName="number" matInput type="text">
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-raised-button color="accent" type="button">Delete</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+
+<mat-card>
+  <form [formGroup]="newFormGroup" (submit)="add()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Number</mat-label>
+      <input formControlName="number" matInput type="text">
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Add</button>
+    </mat-card-actions>
+  </form>
 </mat-card>

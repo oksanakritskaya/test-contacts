@@ -3,12 +3,6 @@ import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {setUser} from "./store.actions";
 import {UserData} from "./interfaces";
 
-/*
-export interface StateModel {
-  name:
-}
-*/
-
 @State<UserData>({
   name: 'user',
   defaults: null
