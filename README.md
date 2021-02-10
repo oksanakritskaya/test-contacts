@@ -1,3 +1,4 @@
+[TZ link](https://clck.ru/ND6xC)
 # for starting use two terminals
 1. npm run json
 2. npm run proxy
