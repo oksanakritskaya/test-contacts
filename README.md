@@ -1,5 +1,7 @@
-# Contacts TZ
-
+# for starting use two terminals
+1. npm run json
+2. npm run proxy
+#
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
 
 ## Development server
