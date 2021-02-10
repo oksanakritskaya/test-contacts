@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpService} from "./http.service";
 import {Observable} from "rxjs";
 import {StoreState} from "./store.state";
 import {Select, Store} from "@ngxs/store";
-import {setUser} from "./store.actions";
 import {UserData} from "./interfaces";
 
 @Component({
@@ -15,7 +13,7 @@ export class AppComponent implements OnInit {
 
   user: UserData;
 
-  constructor(private store: Store) {}
+  constructor() {}
 
   ngOnInit() {
     this.setUser$.subscribe((user: UserData) => {

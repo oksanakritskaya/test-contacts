@@ -61,12 +61,6 @@ export class ContactsComponent implements OnInit {
       });
   }
 
-  save = (id: number) => {
-    const res = this.getContactFormGroup(id);
-    debugger;
-    return false;
-  }
-
   add = () => {
     const newContact: Contact = {
       ...this.newFormGroup.value,
@@ -78,9 +72,27 @@ export class ContactsComponent implements OnInit {
         tap(() => this.newFormGroup.reset()),
         tap(this.getContacts),
       )
-      .subscribe()
+      .subscribe();
 
     return false;
+  }
+
+  save = (id: number) => {
+    this.http.updateContact(id, this.getContactFormGroup(id).value)
+      .pipe(
+        tap(this.getContacts)
+      )
+      .subscribe();
+
+    return false;
+  }
+
+  delete = (id: number) => {
+    this.http.deleteContact(id)
+      .pipe(
+        tap(this.getContacts)
+      )
+      .subscribe();
   }
 
   getContactFormGroup = (id: number) => {

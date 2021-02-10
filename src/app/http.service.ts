@@ -1,20 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Observable, of, throwError} from 'rxjs';
-import {map, retry} from 'rxjs/operators';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {Contact, User, UserData} from "./interfaces";
 
 @Injectable()
 export class HttpService {
-  options: {
-    headers?: HttpHeaders | { [header: string]: string | string[] },
-    observe?: 'body' | 'events' | 'response',
-    params?: HttpParams | { [param: string]: string | string[] },
-    reportProgress?: boolean,
-    responseType?: 'arraybuffer' | 'blob' | 'json' | 'text',
-    withCredentials?: boolean,
-  }
-
   constructor(private http: HttpClient) {
   }
 
@@ -44,21 +35,6 @@ export class HttpService {
       );
   }
 
-  getContactsAll(id: number): Observable<Contact[]> {
-    const opts = {params: new HttpParams({fromString: `user_id=${id.toString()}`})};
-
-    return this.http.get('/contacts')
-      .pipe(
-        map((contacts: Contact[]) => {
-          let result = contacts.filter((contact: Contact) => {
-            return contact.id_user == id;
-          });
-          debugger;
-          return result;
-        })
-      );
-  }
-
   addContact(contact: Contact): Observable<Contact> {
     const opts = {params: new HttpParams({fromString: `user_id=${'1'}`})};
 
@@ -66,5 +42,19 @@ export class HttpService {
       .pipe(
         map((contact: Contact) => contact)
       );
+  }
+
+  updateContact(id: number, contact: Contact): Observable<Contact> {
+    return this.http.patch(`/contacts/${id.toString()}`, contact)
+      .pipe(
+        map((contact: Contact) => {
+          debugger;
+          return contact;
+        })
+      );
+  }
+
+  deleteContact(id: number): Observable<any> {
+    return this.http.delete(`/contacts/${id.toString()}`);
   }
 }
